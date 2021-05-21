@@ -27,10 +27,11 @@ const columns = [
 function pictureFormatter(res) {
     return <img src={res[0]} alt={res[1]} />;
   }
+
 class App extends Component {
   state = {
     results: [],
-    filter: ""
+    filtered: []
   };
 
   componentDidMount() {
@@ -50,21 +51,21 @@ class App extends Component {
             email: data.email
           });
         });
-        console.log(newData);
         this.setState({ results: newData })
+        this.setState({ filtered: newData })
       })
       .catch(err => console.log(err));
   };
 
   handleInputChange = event => {
-    const value = event.target.value;
+    const filter = event.target.value;
+    let filtered = this.state.results.filter((employee) => employee.name.toLowerCase().indexOf(filter.toLowerCase()) !== -1);
     this.setState({
-      filter: value
+      filtered: filtered
     });
   };
 
   render() {
-    console.log(this.state.results);
     return (
       <Container className="p-3" >
         <Jumbotron />
@@ -72,7 +73,7 @@ class App extends Component {
           value={this.state.filter}
           handleInputChange={this.handleInputChange}
         />
-        <BootstrapTable keyField='id' data={this.state.results} columns={columns} bordered={false} />
+        <BootstrapTable keyField='id' data={this.state.filtered} columns={columns} bordered={false} />
       </Container>
     );
   }
