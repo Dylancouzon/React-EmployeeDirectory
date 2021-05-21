@@ -14,13 +14,16 @@ const columns = [
   },
   {
     dataField: 'name',
-    text: 'Name'
+    text: 'Name',
+    sort: true
   }, {
     dataField: 'age',
-    text: 'Age'
+    text: 'Age',
+    sort: true
   }, {
     dataField: 'email',
-    text: 'Email'
+    text: 'Email',
+    sort: true
   },
 ];
 
