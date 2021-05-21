@@ -6,6 +6,7 @@ import Container from 'react-bootstrap/Container';
 import BootstrapTable from 'react-bootstrap-table-next';
 import API from "./utils/API";
 
+//Table colums
 const columns = [
   {
     dataField: 'picture',
@@ -27,6 +28,7 @@ const columns = [
   },
 ];
 
+//Picture Formatting for the table
 function pictureFormatter(res) {
     return <img src={res[0]} alt={res[1]} />;
   }
@@ -37,10 +39,12 @@ class App extends Component {
     filtered: []
   };
 
+    // Execute searchEmployee when loading the page
   componentDidMount() {
     this.searchEmployee();
   }
 
+  // Get results from the Google API and then push the needed data into a new Array
   searchEmployee = () => {
     API.search()
       .then(res => {
@@ -60,6 +64,7 @@ class App extends Component {
       .catch(err => console.log(err));
   };
 
+ // Filter the results
   handleInputChange = event => {
     const filter = event.target.value;
     let filtered = this.state.results.filter((employee) => employee.name.toLowerCase().indexOf(filter.toLowerCase()) !== -1);
@@ -68,6 +73,7 @@ class App extends Component {
     });
   };
 
+  //Render the page
   render() {
     return (
       <Container className="p-3" >
