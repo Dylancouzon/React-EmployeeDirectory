@@ -1,11 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
 
-function App() {
-  return (
-    <div>
-    </div>
-  );
-}
+import Jumbotron from './components/Jumbotron';
+
+
+const App = () => (
+  <>
+    <Jumbotron />
+  </>
+);
 
 export default App;
